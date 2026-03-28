@@ -12,13 +12,13 @@
 
 <body>
 
-  <!-- ===== SFONDO MATRIX EGIZIO ===== -->
+  <!-- ===== SFONDO MATRIX ===== -->
   <canvas id="matrix"></canvas>
 
-  <!-- ===== CONTENUTO CENTRALE DELLA PAGINA ===== -->
+  <!-- ===== CONTENUTO PRINCIPALE ===== -->
   <main class="overlay">
 
-    <!-- ===== BOX INTRODUTTIVO ===== -->
+    <!-- ===== FINESTRA INTRO ===== -->
     <div class="intro-box">
 
       <!-- ===== TITOLO PRINCIPALE ===== -->
@@ -39,61 +39,72 @@
       </button>
 
     </div>
+
   </main>
 
   <!-- ===== SCRIPT ANIMAZIONE MATRIX ===== -->
   <script>
+    /* ===== COLLEGAMENTO CANVAS ===== */
     const canvas = document.getElementById("matrix");
     const ctx = canvas.getContext("2d");
 
+    /* ===== CARATTERI DELLA PIOGGIA ===== */
+    const letters = "𓂀𓆣𓅓𓋹𓃭𓂋𓁹𓆑𓊃𓏏𓈖𓍿ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+
+    /* ===== IMPOSTAZIONI TESTO ===== */
+    const fontSize = 18;
+    let columns = 0;
+    let drops = [];
+
+    /* ===== ADATTA IL CANVAS ALLO SCHERMO ===== */
     function setCanvasSize() {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
     }
 
-    setCanvasSize();
-
-    /* ===== CARATTERI ===== */
-    const letters = "𓂀𓆣𓅓𓋹𓃭𓂋𓁹ASDFGHJKLQWERTYUIOPZXCVBNM𓆑𓊃𓏏𓈖𓍿𓀀𓀁𓀂𓀃𓀄𓀅𓀆𓀇𓀈𓀉𓀊𓀋𓀌𓀍𓀎𓀏1234567890𓀐𓀑𓀒𓀓𓀔𓀕𓀖𓀗𓀘𓀙𓀚𓀛𓀜𓀝𓀞𓀟𓀠𓀡𓀢𓀣𓀤𓀥𓀦𓀧𓀨𓀩𓀪𓀫𓀬𓀭𓀮𓀯𓀰𓀱𓀲𓀳𓀴𓀵";
-
-    /* ===== DIMENSIONE TESTO ===== */
-    const fontSize = 16;
-    let columns = Math.floor(canvas.width / fontSize);
-    let drops = [];
-
+    /* ===== CREA LE COLONNE DELLA PIOGGIA ===== */
     function createDrops() {
       columns = Math.floor(canvas.width / fontSize);
       drops = [];
+
       for (let i = 0; i < columns; i++) {
         drops[i] = Math.random() * canvas.height / fontSize;
       }
     }
 
-    createDrops();
-
+    /* ===== DISEGNO DELLA PIOGGIA ===== */
     function draw() {
-      ctx.fillStyle = "rgba(0, 0, 0, 0.08)";
+      /* scia leggera */
+      ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      ctx.fillStyle = "rgba(180, 140, 0, 0.35)";
-      ctx.shadowColor = "rgba(255, 215, 0, 0.20)";
-      ctx.shadowBlur = 2;
-      ctx.font = fontSize + "px monospace";
+      /* caratteri nitidi oro */
+      ctx.fillStyle = "rgba(255, 215, 0, 0.95)";
+      ctx.shadowColor = "transparent";
+      ctx.shadowBlur = 0;
+      ctx.font = "bold " + fontSize + "px monospace";
 
       for (let i = 0; i < drops.length; i++) {
         const text = letters.charAt(Math.floor(Math.random() * letters.length));
-        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+        const x = i * fontSize;
+        const y = drops[i] * fontSize;
 
-        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+        ctx.fillText(text, x, y);
+
+        if (y > canvas.height && Math.random() > 0.975) {
           drops[i] = 0;
         }
 
-        drops[i]++;
+        drops[i] += 0.9;
       }
     }
 
-    setInterval(draw, 45);
+    /* ===== AVVIO ===== */
+    setCanvasSize();
+    createDrops();
+    setInterval(draw, 40);
 
+    /* ===== RESIZE ===== */
     window.addEventListener("resize", () => {
       setCanvasSize();
       createDrops();
