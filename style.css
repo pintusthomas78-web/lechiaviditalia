@@ -22,7 +22,7 @@ body::before {
   content: "";
   position: fixed;
   inset: 0;
-  background: url("/portoni.jpg") center center / cover no-repeat;
+  background: url("/portoni.png") center center / cover no-repeat;
   z-index: 0;
 }
 
@@ -148,7 +148,7 @@ body::after {
   content: "";
   position: fixed;
   inset: 0;
-  background: url("portoni.jpg") center center / cover no-repeat;
+  background: url("portoni.png") center center / cover no-repeat;
   z-index: 0;
 }
 
