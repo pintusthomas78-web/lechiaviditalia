@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <!-- ===== IMPOSTAZIONI BASE PAGINA ===== -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Le Chiavi d'Italia</title>
+
+  <!-- ===== COLLEGAMENTO AL FILE CSS ===== -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- ===== SFONDO MATRIX EGIZIO ===== -->
+  <canvas id="matrix"></canvas>
+
+  <!-- ===== CONTENUTO CENTRALE DELLA PAGINA ===== -->
+  <main class="overlay">
+
+    <!-- ===== BOX INTRODUTTIVO ===== -->
+    <div class="intro-box">
+
+      <!-- ===== TITOLO PRINCIPALE ===== -->
+      <h1 class="site-title">LE CHIAVI D'ITALIA</h1>
+
+      <!-- ===== SOTTOTITOLO ===== -->
+      <div class="site-subtitle">La caccia al tesoro ha inizio</div>
+
+      <!-- ===== TESTO INTRODUTTIVO ===== -->
+      <p class="egypt-quote">"Non tutti arrivano fin qui."</p>
+      <p class="egypt-quote">Tu sì.</p>
+      <p class="egypt-quote">Questo significa che possiedi qualcosa di raro.</p>
+      <p class="egypt-quote">Ora vediamo fin dove puoi spingerti...</p>
+
+      <!-- ===== BOTTONE ENTRA ===== -->
+      <button class="enter-btn" onclick="window.location.href='hub.html'">
+        ENTRA
+      </button>
+
+    </div>
+  </main>
+
+  <!-- ===== SCRIPT ANIMAZIONE MATRIX ===== -->
+  <script>
+    const canvas = document.getElementById("matrix");
+    const ctx = canvas.getContext("2d");
+
+    function setCanvasSize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+
+    setCanvasSize();
+
+    /* ===== CARATTERI ===== */
+    const letters = "𓂀𓆣𓅓𓋹𓃭𓂋𓁹𓆑𓊃𓏏𓈖𓍿ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+
+    /* ===== DIMENSIONE TESTO ===== */
+    const fontSize = 16;
+    let columns = Math.floor(canvas.width / fontSize);
+    let drops = [];
+
+    function createDrops() {
+      columns = Math.floor(canvas.width / fontSize);
+      drops = [];
+      for (let i = 0; i < columns; i++) {
+        drops[i] = Math.random() * canvas.height / fontSize;
+      }
+    }
+
+    createDrops();
+
+    function draw() {
+      ctx.fillStyle = "rgba(0, 0, 0, 0.08)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.fillStyle = "rgba(255, 215, 0, 0.75)";
+      ctx.shadowColor = "rgba(255, 215, 0, 0.35)";
+      ctx.shadowBlur = 6;
+      ctx.font = fontSize + "px monospace";
+
+      for (let i = 0; i < drops.length; i++) {
+        const text = letters.charAt(Math.floor(Math.random() * letters.length));
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+
+        drops[i]++;
+      }
+    }
+
+    setInterval(draw, 45);
+
+    window.addEventListener("resize", () => {
+      setCanvasSize();
+      createDrops();
+    });
+  </script>
+
+</body>
+</html>
