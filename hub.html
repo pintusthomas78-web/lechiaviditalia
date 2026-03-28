@@ -1,24 +1,38 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <!-- ===== IMPOSTAZIONI BASE PAGINA ===== -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hub - Le Chiavi d'Italia</title>
-
-  <!-- ===== COLLEGAMENTO AL FILE CSS ===== -->
+  <title>Le Chiavi d'Italia - Scelta</title>
   <link rel="stylesheet" href="style.css">
 </head>
-
 <body class="hub-page">
 
   <!-- ===== CONTENUTO HUB ===== -->
-  <div class="hub-box">
-    <h1>Benvenuto</h1>
-    <p>Hai superato la prima soglia.</p>
-    <p>Dietro questi portoni si cela l'inizio del percorso.</p>
-    <p>Questa pagina sarà la base del prossimo step del gioco.</p>
+  <div class="hub-content">
+    <div class="hub-panel">
+      <h1>I Cinque Portoni</h1>
+      <p>Scegli con attenzione.</p>
+    </div>
+
+    <div class="portoni-container">
+      <div class="portone" onclick="scelta(1)"></div>
+      <div class="portone" onclick="scelta(2)"></div>
+      <div class="portone" onclick="scelta(3)"></div>
+      <div class="portone" onclick="scelta(4)"></div>
+      <div class="portone" onclick="scelta(5)"></div>
+    </div>
   </div>
+
+  <script>
+    function scelta(numero) {
+      if (numero === 3) {
+        alert("Hai scelto il portone giusto...");
+      } else {
+        alert("Portone sbagliato...");
+      }
+    }
+  </script>
 
 </body>
 </html>
