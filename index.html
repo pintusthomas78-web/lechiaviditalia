@@ -13,7 +13,66 @@
 <body class="home">
 
   <!-- ===== SFONDO PORTONI ===== -->
-  <img src="file_00000000813471f485af95f5decb4fe4.png" class="bg">
+  <img src="file_00000000813471f485af95f5decb4fe4.png" class="bg" alt="Portoni">
+
+  <!-- ===== PIOGGIA DI CARATTERI ===== -->
+  <canvas id="matrix"></canvas>
+
+  <!-- ===== SCRIPT PIOGGIA ORO ===== -->
+  <script>
+    const canvas = document.getElementById("matrix");
+    const ctx = canvas.getContext("2d");
+
+    const letters = "𓂀𓆣𓅓𓋹𓃭𓂋𓁹𓆑𓊃𓏏𓈖𓍿ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    const fontSize = 18;
+    let columns = 0;
+    let drops = [];
+
+    function setCanvasSize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+
+    function createDrops() {
+      columns = Math.floor(canvas.width / fontSize);
+      drops = [];
+      for (let i = 0; i < columns; i++) {
+        drops[i] = Math.random() * canvas.height / fontSize;
+      }
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      ctx.fillStyle = "rgba(212, 175, 55, 0.95)";
+      ctx.shadowColor = "rgba(212, 175, 55, 0.35)";
+      ctx.shadowBlur = 4;
+      ctx.font = "bold " + fontSize + "px monospace";
+
+      for (let i = 0; i < drops.length; i++) {
+        const text = letters.charAt(Math.floor(Math.random() * letters.length));
+        const x = i * fontSize;
+        const y = drops[i] * fontSize;
+
+        ctx.fillText(text, x, y);
+
+        if (y > canvas.height && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+
+        drops[i] += 0.75;
+      }
+    }
+
+    setCanvasSize();
+    createDrops();
+    setInterval(draw, 50);
+
+    window.addEventListener("resize", () => {
+      setCanvasSize();
+      createDrops();
+    });
+  </script>
 
 </body>
 </html>
