@@ -18,6 +18,19 @@
   <!-- ===== PIOGGIA DI CARATTERI ===== -->
   <canvas id="matrix"></canvas>
 
+  <!-- ===== FINESTRA CENTRALE ===== -->
+  <div class="overlay">
+    <h1>LE CHIAVI D'ITALIA</h1>
+    <p class="subtitle">La caccia al tesoro ha inizio</p>
+    <p class="quote">"Non tutti arrivano fin qui."</p>
+    <p class="bold">Tu sì.</p>
+    <p class="desc">
+      Questo significa che possiedi qualcosa di raro.<br>
+      Ora vediamo fin dove puoi spingerti...
+    </p>
+    <a href="#" class="btn">ENTRA</a>
+  </div>
+
   <!-- ===== SCRIPT PIOGGIA ORO ===== -->
   <script>
     const canvas = document.getElementById("matrix");
@@ -36,42 +49,59 @@
     function createDrops() {
       columns = Math.floor(canvas.width / fontSize);
       drops = [];
+
       for (let i = 0; i < columns; i++) {
-        drops[i] = Math.random() * canvas.height / fontSize;
+        if (Math.random() > 0.65) {
+          drops[i] = Math.random() * canvas.height / fontSize;
+        } else {
+          drops[i] = -100;
+        }
       }
     }
 
     function draw() {
-  /* fa svanire solo i caratteri già disegnati */
-  ctx.globalCompositeOperation = "destination-out";
-  ctx.fillStyle = "rgba(0, 0, 0, 0.08)";
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
+      /* svanisce solo quello già disegnato sul canvas */
+      ctx.globalCompositeOperation = "destination-out";
+      ctx.fillStyle = "rgba(0, 0, 0, 0.14)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-  /* torna al disegno normale */
-  ctx.globalCompositeOperation = "source-over";
+      /* torna al disegno normale */
+      ctx.globalCompositeOperation = "source-over";
 
-  ctx.fillStyle = "rgba(212, 175, 55, 0.9)";
-  ctx.shadowColor = "rgba(212, 175, 55, 0.25)";
-  ctx.shadowBlur = 3;
-  ctx.font = "bold " + fontSize + "px monospace";
+      ctx.fillStyle = "rgba(212, 175, 55, 0.78)";
+      ctx.shadowColor = "rgba(212, 175, 55, 0.12)";
+      ctx.shadowBlur = 1;
+      ctx.font = "bold " + fontSize + "px monospace";
 
-  for (let i = 0; i < drops.length; i++) {
-    const text = letters.charAt(Math.floor(Math.random() * letters.length));
-    const x = i * fontSize;
-    const y = drops[i] * fontSize;
+      for (let i = 0; i < drops.length; i++) {
+        if (drops[i] < 0) {
+          if (Math.random() > 0.997) {
+            drops[i] = 0;
+          }
+          continue;
+        }
 
-    ctx.fillText(text, x, y);
+        const text = letters.charAt(Math.floor(Math.random() * letters.length));
+        const x = i * fontSize;
+        const y = drops[i] * fontSize;
 
-    if (y > canvas.height && Math.random() > 0.975) {
-      drops[i] = 0;
+        ctx.fillText(text, x, y);
+
+        if (y > canvas.height && Math.random() > 0.985) {
+          if (Math.random() > 0.55) {
+            drops[i] = 0;
+          } else {
+            drops[i] = -100;
+          }
+        } else {
+          drops[i] += 0.55 + Math.random() * 0.45;
+        }
+      }
     }
 
-    drops[i] += 0.7;
-  }
-}
     setCanvasSize();
     createDrops();
-    setInterval(draw, 50);
+    setInterval(draw, 55);
 
     window.addEventListener("resize", () => {
       setCanvasSize();
