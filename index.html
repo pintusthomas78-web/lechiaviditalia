@@ -42,12 +42,17 @@
     }
 
     function draw() {
-  ctx.fillStyle = "rgba(0, 0, 0, 0.0001)";
+  /* fa svanire solo i caratteri già disegnati */
+  ctx.globalCompositeOperation = "destination-out";
+  ctx.fillStyle = "rgba(0, 0, 0, 0.08)";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-  ctx.fillStyle = "rgba(212, 175, 55, 0.95)";
-  ctx.shadowColor = "rgba(212, 175, 55, 0.35)";
-  ctx.shadowBlur = 4;
+  /* torna al disegno normale */
+  ctx.globalCompositeOperation = "source-over";
+
+  ctx.fillStyle = "rgba(212, 175, 55, 0.9)";
+  ctx.shadowColor = "rgba(212, 175, 55, 0.25)";
+  ctx.shadowBlur = 3;
   ctx.font = "bold " + fontSize + "px monospace";
 
   for (let i = 0; i < drops.length; i++) {
@@ -61,7 +66,7 @@
       drops[i] = 0;
     }
 
-    drops[i] += 0.75;
+    drops[i] += 0.7;
   }
 }
     setCanvasSize();
