@@ -12,6 +12,7 @@
   overflow: hidden;
   background: #000;
   position: relative;
+  font-family: Georgia, serif;
 }
 
 /* ===== IMMAGINE SFONDO ===== */
@@ -35,4 +36,73 @@
   z-index: 1;
   background: transparent;
   pointer-events: none;
+}
+
+/* ===== FINESTRA CENTRALE ===== */
+.overlay {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #f5e6c8;
+  padding: 38px 32px;
+  border-radius: 14px;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(3px);
+  width: min(90vw, 760px);
+  box-shadow: 0 0 24px rgba(0, 0, 0, 0.35);
+}
+
+/* ===== TITOLO ===== */
+.overlay h1 {
+  font-size: clamp(2rem, 5vw, 4rem);
+  margin-bottom: 14px;
+  letter-spacing: 2px;
+  color: #f1d97a;
+  text-shadow: 0 0 8px rgba(0, 0, 0, 0.35);
+}
+
+/* ===== TESTI ===== */
+.subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 22px;
+  color: #e8d28b;
+}
+
+.quote {
+  font-style: italic;
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+}
+
+.bold {
+  font-weight: bold;
+  margin-bottom: 14px;
+  font-size: 1.15rem;
+}
+
+.desc {
+  margin-bottom: 24px;
+  line-height: 1.6;
+  font-size: 1.08rem;
+}
+
+/* ===== BOTTONE ===== */
+.btn {
+  display: inline-block;
+  padding: 12px 30px;
+  border-radius: 30px;
+  background: linear-gradient(135deg, #caa437, #f1d97a);
+  color: #151515;
+  text-decoration: none;
+  font-weight: bold;
+  letter-spacing: 1px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.btn:hover {
+  transform: scale(1.06);
+  box-shadow: 0 0 14px rgba(212, 175, 55, 0.35);
 }
