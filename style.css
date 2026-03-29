@@ -230,6 +230,11 @@
   color: #f5e6c8;
   font-size: 0.95rem;
 }
+.riga.header {
+  font-weight: bold;
+  color: #d4af37;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.4);
+}
 
 /* ===== BLOCCO DESTRA HUB ===== */
 .hub-right {
