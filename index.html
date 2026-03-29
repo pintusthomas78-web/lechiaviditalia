@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <!-- ===== BASE ===== -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Le Chiavi d'Italia</title>
-
-  <!-- ===== CSS ===== -->
+  <title>Hub - Le Chiavi d'Italia</title>
   <link rel="stylesheet" href="style.css">
 </head>
 
@@ -18,17 +15,57 @@
   <!-- ===== PIOGGIA DI CARATTERI ===== -->
   <canvas id="matrix"></canvas>
 
-  <!-- ===== FINESTRA CENTRALE ===== -->
-  <div class="overlay">
-    <h1>LE CHIAVI D'ITALIA</h1>
-    <p class="subtitle">La caccia al tesoro ha inizio</p>
-    <p class="quote">"Non tutti arrivano fin qui."</p>
-    <p class="bold">Tu sì.</p>
-    <p class="desc">
-      Questo significa che possiedi qualcosa di raro.<br>
-      Ora vediamo fin dove puoi spingerti...
-    </p>
-    <a href="#" class="btn">ENTRA</a>
+  <!-- ===== GRANDE FINESTRA HUB ===== -->
+  <div class="hub-overlay">
+
+    <!-- ===== SOCIAL ALTO DESTRA ===== -->
+    <div class="hub-social">
+      <a href="#">YT</a>
+      <a href="#">IG</a>
+      <a href="#">FB</a>
+    </div>
+
+    <!-- ===== LATO SINISTRO ===== -->
+    <div class="hub-left">
+      <h1>LE CHIAVI D'ITALIA</h1>
+      <p>Osserva. Comprendi. Avanza.</p>
+      <p>Solo i migliori scaleranno la classifica.</p>
+    </div>
+
+    <!-- ===== CLASSIFICA CENTRALE ===== -->
+    <div class="hub-center">
+      <div class="classifica-box">
+        <h2>CLASSIFICA</h2>
+
+        <div class="classifica-lista">
+          <div class="riga"><span>1</span><span>---</span></div>
+          <div class="riga"><span>2</span><span>---</span></div>
+          <div class="riga"><span>3</span><span>---</span></div>
+          <div class="riga"><span>4</span><span>---</span></div>
+          <div class="riga"><span>5</span><span>---</span></div>
+          <div class="riga"><span>6</span><span>---</span></div>
+          <div class="riga"><span>7</span><span>---</span></div>
+          <div class="riga"><span>8</span><span>---</span></div>
+          <div class="riga"><span>9</span><span>---</span></div>
+          <div class="riga"><span>10</span><span>---</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== MENU DESTRA ===== -->
+    <div class="hub-right">
+      <a href="#" class="hub-btn small-btn">1</a>
+      <a href="#" class="hub-btn small-btn">2</a>
+      <a href="#" class="hub-btn small-btn">3</a>
+      <a href="#" class="hub-btn small-btn">4</a>
+    </div>
+
+    <!-- ===== BASSO ===== -->
+    <div class="hub-bottom">
+      <a href="#" class="hub-btn assistenza-btn">6</a>
+      <a href="#" class="hub-btn prosegui-btn">5</a>
+    </div>
+
   </div>
 
   <!-- ===== SCRIPT PIOGGIA ORO ===== -->
@@ -60,12 +97,10 @@
     }
 
     function draw() {
-      /* svanisce solo quello già disegnato sul canvas */
       ctx.globalCompositeOperation = "destination-out";
       ctx.fillStyle = "rgba(0, 0, 0, 0.14)";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      /* torna al disegno normale */
       ctx.globalCompositeOperation = "source-over";
 
       ctx.fillStyle = "rgba(212, 175, 55, 0.78)";
