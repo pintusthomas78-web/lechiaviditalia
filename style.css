@@ -249,12 +249,15 @@
 .assistenza-btn {
   position: absolute;
   left: 24px;
+  bottom: 0;
 }
 
 .prosegui-btn {
   position: absolute;
   left: 50%;
+  bottom: 0;
   transform: translateX(-50%);
+}
   animation: pulseGlow 1.8s infinite;
   text-shadow: 0 0 10px rgba(255, 223, 120, 0.8);
 }
@@ -297,6 +300,11 @@
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
+}
+
+.lampeggia-btn {
+  animation: pulseGlow 1.8s infinite !important;
+  text-shadow: 0 0 10px rgba(255, 223, 120, 0.8);
 }
 
 .lampeggia-btn:hover {
