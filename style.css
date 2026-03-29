@@ -263,7 +263,7 @@
   transform: translateX(-50%);
 }
 .prosegui-btn:hover {
-  transform: translateX(-50%) scale(1.06);
+  transform: translateX(-50%) scale(1.00);
 }
 
 /* ===== BOTTONI HUB ===== */
