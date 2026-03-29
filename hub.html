@@ -10,79 +10,112 @@
 <body class="home">
 
   <!-- ===== SFONDO ===== -->
-  <img src="sfondo.jpg" class="bg">
+  <img src="file_00000000813471f485af95f5decb4fe4.png" class="bg">
 
   <!-- ===== PIOGGIA ===== -->
   <canvas id="matrix"></canvas>
 
-  <!-- ===== BLOCCO SINISTRA ===== -->
-  <div class="hub-left">
-    <h1>LE CHIAVI D'ITALIA</h1>
-    <p>Osserva. Comprendi. Avanza.</p>
-    <p>Solo i migliori scaleranno la classifica.</p>
-  </div>
+  <!-- ===== HUB ===== -->
+  <div class="hub-overlay">
 
-  <!-- ===== CLASSIFICA CENTRALE ===== -->
-  <div class="hub-center">
-    <div class="classifica-box">
+    <!-- ===== SOCIAL ===== -->
+    <div class="hub-social">
+      <a href="#">YT</a>
+      <a href="#">IG</a>
+      <a href="#">FB</a>
+    </div>
 
-      <h2>CLASSIFICA</h2>
+    <!-- ===== SINISTRA ===== -->
+    <div class="hub-left">
+      <h1>LE CHIAVI D'ITALIA</h1>
+      <p>Osserva. Comprendi. Avanza.</p>
+      <p>Solo i migliori scaleranno la classifica.</p>
+    </div>
 
-      <div class="classifica-lista">
+    <!-- ===== CLASSIFICA ===== -->
+    <div class="hub-center">
+      <div class="classifica-box">
 
-        <div class="riga header">
-          <span>#</span>
-          <span>Nome</span>
-          <span>V</span>
-          <span>E</span>
-          <span>Data</span>
-        </div>
+        <h2>CLASSIFICA</h2>
 
-        <div class="riga">
-          <span>1</span><span>Luca</span><span>3</span><span>21</span><span>29.03.26</span>
-        </div>
+        <div class="classifica-lista">
 
-        <div class="riga">
-          <span>2</span><span>Giovanni</span><span>5</span><span>12</span><span>28.03.26</span>
-        </div>
+          <div class="riga header">
+            <span>#</span>
+            <span>Nome</span>
+            <span>V</span>
+            <span>E</span>
+            <span>Data</span>
+          </div>
 
-        <div class="riga">
-          <span>3</span><span>Joe</span><span>2</span><span>30</span><span>27.03.26</span>
-        </div>
+          <div class="riga"><span>1</span><span>Luca</span><span>3</span><span>21</span><span>29.03.26</span></div>
+          <div class="riga"><span>2</span><span>Giovanni</span><span>5</span><span>12</span><span>28.03.26</span></div>
+          <div class="riga"><span>3</span><span>Joe</span><span>2</span><span>30</span><span>27.03.26</span></div>
+          <div class="riga"><span>4</span><span>Thomas</span><span>4</span><span>18</span><span>29.03.26</span></div>
+          <div class="riga"><span>5</span><span>Liam</span><span>1</span><span>40</span><span>25.03.26</span></div>
+          <div class="riga"><span>6</span><span>Sergio</span><span>6</span><span>10</span><span>29.03.26</span></div>
+          <div class="riga"><span>7</span><span>Voldemort</span><span>0</span><span>99</span><span>20.03.26</span></div>
 
-        <div class="riga">
-          <span>4</span><span>Thomas</span><span>4</span><span>18</span><span>29.03.26</span>
-        </div>
-
-        <div class="riga">
-          <span>5</span><span>Liam</span><span>1</span><span>40</span><span>25.03.26</span>
-        </div>
-
-        <div class="riga">
-          <span>6</span><span>Sergio</span><span>6</span><span>10</span><span>29.03.26</span>
-        </div>
-
-        <div class="riga">
-          <span>7</span><span>Voldemort</span><span>0</span><span>99</span><span>20.03.26</span>
         </div>
 
       </div>
     </div>
+
+    <!-- ===== MENU DESTRA ===== -->
+    <div class="hub-right">
+      <a href="#" class="hub-btn small-btn">1</a>
+      <a href="#" class="hub-btn small-btn">2</a>
+      <a href="#" class="hub-btn small-btn">3</a>
+      <a href="#" class="hub-btn small-btn">4</a>
+    </div>
+
+    <!-- ===== BASSO ===== -->
+    <div class="hub-bottom">
+      <a href="#" class="hub-btn assistenza-btn">6</a>
+      <a href="#" class="hub-btn prosegui-btn">5</a>
+    </div>
+
   </div>
 
-  <!-- ===== MENU DESTRA ===== -->
-  <div class="hub-right">
-    <a href="#" class="hub-btn small-btn">1</a>
-    <a href="#" class="hub-btn small-btn">2</a>
-    <a href="#" class="hub-btn small-btn">3</a>
-    <a href="#" class="hub-btn small-btn">4</a>
-  </div>
+  <!-- ===== SCRIPT PIOGGIA ===== -->
+  <script>
+    const canvas = document.getElementById("matrix");
+    const ctx = canvas.getContext("2d");
 
-  <!-- ===== BASSO ===== -->
-  <div class="hub-bottom">
-    <a href="#" class="hub-btn assistenza-btn">6</a>
-    <a href="#" class="hub-btn prosegui-btn">5</a>
-  </div>
+    const letters = "𓂀𓆣𓅓𓋹𓃭𓂋𓁹𓆑𓊃𓏏𓈖𓍿ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    const fontSize = 18;
+    let columns;
+    let drops;
+
+    function resize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      columns = Math.floor(canvas.width / fontSize);
+      drops = Array(columns).fill(0);
+    }
+
+    function draw() {
+      ctx.fillStyle = "rgba(0,0,0,0.15)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.fillStyle = "#d4af37";
+      ctx.font = fontSize + "px monospace";
+
+      for (let i = 0; i < drops.length; i++) {
+        const text = letters[Math.floor(Math.random() * letters.length)];
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.98) {
+          drops[i] = 0;
+        }
+        drops[i]++;
+      }
+    }
+
+    resize();
+    setInterval(draw, 50);
+    window.addEventListener("resize", resize);
+  </script>
 
 </body>
 </html>
