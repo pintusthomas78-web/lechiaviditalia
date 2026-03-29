@@ -1,1 +1,148 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hub - Le Chiavi d'Italia</title>
+  <link rel="stylesheet" href="style.css">
+</head>
 
+<body class="home">
+
+  <!-- ===== SFONDO PORTONI ===== -->
+  <img src="file_00000000813471f485af95f5decb4fe4.png" class="bg" alt="Portoni">
+
+  <!-- ===== PIOGGIA DI CARATTERI ===== -->
+  <canvas id="matrix"></canvas>
+
+  <!-- ===== GRANDE FINESTRA HUB ===== -->
+  <div class="hub-overlay">
+
+    <!-- ===== SOCIAL ALTO DESTRA ===== -->
+    <div class="hub-social">
+      <a href="#">YT</a>
+      <a href="#">IG</a>
+      <a href="#">FB</a>
+    </div>
+
+    <!-- ===== TITOLO LATO SINISTRO ===== -->
+    <div class="hub-left">
+      <h1>LE CHIAVI D'ITALIA</h1>
+      <p>Osserva. Comprendi. Avanza.</p>
+      <p>Solo i migliori scaleranno la classifica.</p>
+    </div>
+
+    <!-- ===== CLASSIFICA CENTRALE ===== -->
+    <div class="hub-center">
+      <div class="classifica-box">
+        <h2>CLASSIFICA</h2>
+
+        <div class="classifica-lista">
+          <div class="riga"><span>1</span><span>---</span></div>
+          <div class="riga"><span>2</span><span>---</span></div>
+          <div class="riga"><span>3</span><span>---</span></div>
+          <div class="riga"><span>4</span><span>---</span></div>
+          <div class="riga"><span>5</span><span>---</span></div>
+          <div class="riga"><span>6</span><span>---</span></div>
+          <div class="riga"><span>7</span><span>---</span></div>
+          <div class="riga"><span>8</span><span>---</span></div>
+          <div class="riga"><span>9</span><span>---</span></div>
+          <div class="riga"><span>10</span><span>---</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== MENU DESTRA ===== -->
+    <div class="hub-right">
+      <a href="#" class="hub-btn small-btn">1</a>
+      <a href="#" class="hub-btn small-btn">2</a>
+      <a href="#" class="hub-btn small-btn">3</a>
+      <a href="#" class="hub-btn small-btn">4</a>
+    </div>
+
+    <!-- ===== BASSO ===== -->
+    <div class="hub-bottom">
+      <a href="#" class="hub-btn assistenza-btn">6</a>
+      <a href="#" class="hub-btn prosegui-btn">5</a>
+    </div>
+
+  </div>
+
+  <!-- ===== SCRIPT PIOGGIA ORO ===== -->
+  <script>
+    const canvas = document.getElementById("matrix");
+    const ctx = canvas.getContext("2d");
+
+    const letters = "𓂀𓆣𓅓𓋹𓃭𓂋𓁹𓆑𓊃𓏏𓈖𓍿ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    const fontSize = 18;
+    let columns = 0;
+    let drops = [];
+
+    function setCanvasSize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+
+    function createDrops() {
+      columns = Math.floor(canvas.width / fontSize);
+      drops = [];
+
+      for (let i = 0; i < columns; i++) {
+        if (Math.random() > 0.65) {
+          drops[i] = Math.random() * canvas.height / fontSize;
+        } else {
+          drops[i] = -100;
+        }
+      }
+    }
+
+    function draw() {
+      ctx.globalCompositeOperation = "destination-out";
+      ctx.fillStyle = "rgba(0, 0, 0, 0.14)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.globalCompositeOperation = "source-over";
+
+      ctx.fillStyle = "rgba(212, 175, 55, 0.78)";
+      ctx.shadowColor = "rgba(212, 175, 55, 0.12)";
+      ctx.shadowBlur = 1;
+      ctx.font = "bold " + fontSize + "px monospace";
+
+      for (let i = 0; i < drops.length; i++) {
+        if (drops[i] < 0) {
+          if (Math.random() > 0.997) {
+            drops[i] = 0;
+          }
+          continue;
+        }
+
+        const text = letters.charAt(Math.floor(Math.random() * letters.length));
+        const x = i * fontSize;
+        const y = drops[i] * fontSize;
+
+        ctx.fillText(text, x, y);
+
+        if (y > canvas.height && Math.random() > 0.985) {
+          if (Math.random() > 0.55) {
+            drops[i] = 0;
+          } else {
+            drops[i] = -100;
+          }
+        } else {
+          drops[i] += 0.55 + Math.random() * 0.45;
+        }
+      }
+    }
+
+    setCanvasSize();
+    createDrops();
+    setInterval(draw, 55);
+
+    window.addEventListener("resize", () => {
+      setCanvasSize();
+      createDrops();
+    });
+  </script>
+
+</body>
+  </html>
