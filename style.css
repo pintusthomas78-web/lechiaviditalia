@@ -285,9 +285,46 @@
   width: 60px;
 }
 
-.prosegui-btn,
-.assistenza-btn {
+.assistenza-btn,
+.prosegui-btn {
   min-width: 76px;
+}
+
+/* ===== SOLO PROSEGUI LAMPEGGIA ===== */
+.prosegui-btn {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: pulseGlow 1.8s infinite;
+  text-shadow: 0 0 10px rgba(255, 223, 120, 0.8);
+}
+
+.prosegui-btn:hover {
+  transform: translateX(-50%) scale(1.06);
+  box-shadow:
+    0 0 30px rgba(212, 175, 55, 0.9),
+    0 0 60px rgba(212, 175, 55, 0.6),
+    0 0 90px rgba(212, 175, 55, 0.4);
+}
+
+/* ===== ANIMAZIONE LUCE PROSEGUI ===== */
+@keyframes pulseGlow {
+  0% {
+    box-shadow:
+      0 0 10px rgba(212, 175, 55, 0.4),
+      0 0 20px rgba(212, 175, 55, 0.25);
+  }
+  50% {
+    box-shadow:
+      0 0 30px rgba(212, 175, 55, 0.9),
+      0 0 60px rgba(212, 175, 55, 0.6),
+      0 0 90px rgba(212, 175, 55, 0.4);
+  }
+  100% {
+    box-shadow:
+      0 0 10px rgba(212, 175, 55, 0.4),
+      0 0 20px rgba(212, 175, 55, 0.25);
+  }
 }
 
 /* ===== RESPONSIVE ===== */
