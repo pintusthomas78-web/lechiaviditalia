@@ -108,10 +108,7 @@
   box-shadow: 0 0 14px rgba(212, 175, 55, 0.35);
 }
 
-/* ===== ANIMAZIONE LUCE BOTTONE ===== */
 @keyframes pulseGlow {
-  0% {
-    @keyframes pulseGlow {
   0% {
     box-shadow:
       0 0 10px rgba(212, 175, 55, 0.4),
