@@ -294,11 +294,9 @@
 
 .assistenza-btn,
 .prosegui-btn {
-  min-width: 76px;
-}
-.lampeggia-btn {
-  animation: pulseGlow 1.8s infinite;
-  text-shadow: 0 0 10px rgba(255, 223, 120, 0.8);
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .lampeggia-btn:hover {
