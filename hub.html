@@ -7,6 +7,16 @@
   <link rel="stylesheet" href="style.css">
 </head>
 
+  <script>
+document.querySelectorAll('.riga span:nth-child(2)').forEach(nome => {
+  let testo = nome.textContent.trim();
+
+  if (testo.length > 5) {
+    nome.textContent = testo.substring(0, 5) + '.';
+  }
+});
+</script>
+
 <body class="home">
 
   <!-- ===== SFONDO ===== -->
