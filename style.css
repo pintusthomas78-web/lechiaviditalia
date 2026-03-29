@@ -222,12 +222,13 @@
 }
 
 .riga {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 40px 1fr 50px 50px 90px;
   align-items: center;
-  padding: 8px 10px;
+  padding: 6px 8px;
   border-bottom: 1px solid rgba(212, 175, 55, 0.15);
   color: #f5e6c8;
+  font-size: 0.95rem;
 }
 
 /* ===== BLOCCO DESTRA HUB ===== */
