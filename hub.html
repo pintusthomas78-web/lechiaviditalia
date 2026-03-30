@@ -1,1 +1,76 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <!-- ===== BASE HUB ===== -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hub - Le Chiavi d'Italia</title>
 
+  <!-- ===== CSS ===== -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="hub-page">
+
+  <!-- ===== FINESTRA CENTRALE HUB ===== -->
+  <div class="hub-shell">
+
+    <!-- ===== CLASSIFICA CENTRALE ===== -->
+    <div class="hub-center">
+      <div class="classifica-box">
+        <h2>CLASSIFICA</h2>
+
+        <div class="classifica-lista">
+          <div class="riga header">
+            <span>#</span>
+            <span>Player</span>
+            <span>V</span>
+            <span>E</span>
+            <span>Accesso</span>
+          </div>
+
+          <div class="riga"><span>1</span><span>Luca</span><span>3</span><span>21</span><span>29.3.26</span></div>
+          <div class="riga"><span>2</span><span>Gianluca</span><span>5</span><span>12</span><span>28.3.26</span></div>
+          <div class="riga"><span>3</span><span>Alessandro</span><span>2</span><span>30</span><span>27.3.26</span></div>
+          <div class="riga"><span>4</span><span>Thomas</span><span>4</span><span>18</span><span>29.3.26</span></div>
+          <div class="riga"><span>5</span><span>Liam</span><span>1</span><span>40</span><span>25.3.26</span></div>
+          <div class="riga"><span>6</span><span>Sergio</span><span>6</span><span>10</span><span>29.3.26</span></div>
+          <div class="riga"><span>7</span><span>Voldemort</span><span>0</span><span>99</span><span>20.3.26</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== MENU DESTRA ===== -->
+    <div class="hub-right">
+      <a href="#" class="hub-btn menu-btn">Accesso / Registrati</a>
+      <a href="#" class="hub-btn menu-btn">Shop</a>
+      <a href="#" class="hub-btn menu-btn">Manuale</a>
+      <a href="#" class="hub-btn menu-btn">Legale</a>
+    </div>
+
+    <!-- ===== BASSO HUB ===== -->
+    <div class="hub-bottom">
+      <a href="#" class="hub-btn assistenza-btn">Assistenza</a>
+      <a href="#" class="hub-btn prosegui-btn">Prosegui</a>
+    </div>
+
+  </div>
+
+  <!-- ===== SCRIPT TAGLIO NOMI ===== -->
+  <script>
+    document.querySelectorAll('.riga').forEach((riga, index) => {
+      if (index === 0) return; // salta header
+
+      const nome = riga.children[1];
+      if (!nome) return;
+
+      let testo = nome.textContent.trim();
+
+      if (testo.length > 5) {
+        nome.textContent = testo.substring(0, 5) + '.';
+      }
+    });
+  </script>
+
+</body>
+</html>
