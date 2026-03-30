@@ -9,8 +9,89 @@
   <!-- ===== CSS ===== -->
   <link rel="stylesheet" href="style.css">
 </head>
+  <!-- ===== SCRIPT PIOGGIA ORO ===== -->
+<script>
+const canvas = document.getElementById("matrix");
+const ctx = canvas.getContext("2d");
+
+const letters = "𓂀𓆣𓅓𓋹𓃭𓂋𓁹𓆑𓊃𓏏𓈖𓍿ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+const fontSize = 18;
+let columns = 0;
+let drops = [];
+
+function setCanvasSize() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+
+function createDrops() {
+  columns = Math.floor(canvas.width / fontSize);
+  drops = [];
+
+  for (let i = 0; i < columns; i++) {
+    if (Math.random() > 0.65) {
+      drops[i] = Math.random() * canvas.height / fontSize;
+    } else {
+      drops[i] = -100;
+    }
+  }
+}
+
+function draw() {
+  ctx.globalCompositeOperation = "destination-out";
+  ctx.fillStyle = "rgba(0, 0, 0, 0.14)";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  ctx.globalCompositeOperation = "source-over";
+
+  ctx.fillStyle = "rgba(212, 175, 55, 0.78)";
+  ctx.shadowColor = "rgba(212, 175, 55, 0.12)";
+  ctx.shadowBlur = 1;
+  ctx.font = "bold " + fontSize + "px monospace";
+
+  for (let i = 0; i < drops.length; i++) {
+    if (drops[i] < 0) {
+      if (Math.random() > 0.997) {
+        drops[i] = 0;
+      }
+      continue;
+    }
+
+    const text = letters.charAt(Math.floor(Math.random() * letters.length));
+    const x = i * fontSize;
+    const y = drops[i] * fontSize;
+
+    ctx.fillText(text, x, y);
+
+    if (y > canvas.height && Math.random() > 0.985) {
+      if (Math.random() > 0.55) {
+        drops[i] = 0;
+      } else {
+        drops[i] = -100;
+      }
+    } else {
+      drops[i] += 0.55 + Math.random() * 0.45;
+    }
+  }
+}
+
+setCanvasSize();
+createDrops();
+setInterval(draw, 55);
+
+window.addEventListener("resize", () => {
+  setCanvasSize();
+  createDrops();
+});
+</script>
 
 <body class="hub-page">
+ 
+  <!-- ===== SFONDO PORTONI ===== -->
+<img src="file_00000000813471f485af95f5decb4fe4.png" class="bg" alt="Portoni">
+ 
+  <!-- ===== PIOGGIA DI CARATTERI ===== -->
+<canvas id="matrix"></canvas>
 
   <!-- ===== FINESTRA CENTRALE HUB ===== -->
   <div class="hub-shell">
