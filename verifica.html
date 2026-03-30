@@ -10,6 +10,15 @@
   <link rel="stylesheet" href="style.css">
 </head>
 
+  <p id="messaggio"></p>
+
+<script>
+const email = localStorage.getItem("emailRegistrazione");
+
+document.getElementById("messaggio").innerText =
+  "Ti abbiamo inviato un codice a: " + email;
+</script>
+</body>
 <body class="login-page">
 
   <!-- ===== PIOGGIA DI CARATTERI ===== -->
