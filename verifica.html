@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <!-- ===== BASE VERIFICA ===== -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verifica Codice - Le Chiavi d'Italia</title>
+
+  <!-- ===== CSS ===== -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="login-page">
+
+  <!-- ===== PIOGGIA DI CARATTERI ===== -->
+  <canvas id="matrix"></canvas>
+
+  <!-- ===== CONTENITORE VERIFICA ===== -->
+  <div class="login-shell">
+
+    <!-- ===== TITOLO ===== -->
+    <div class="login-title-box">
+      <h1>VERIFICA CODICE</h1>
+      <p>Inserisci il codice ricevuto via email per confermare la registrazione.</p>
+    </div>
+
+    <!-- ===== BOX VERIFICA ===== -->
+    <div class="verifica-card">
+      <h2>Conferma registrazione</h2>
+
+      <label for="verifica-email">Email</label>
+      <input id="verifica-email" type="email" placeholder="Inserisci email">
+
+      <label for="verifica-codice">Codice</label>
+      <input id="verifica-codice" type="text" placeholder="Inserisci codice ricevuto">
+
+      <a href="hub.html" class="login-btn">Conferma codice</a>
+
+      <div class="verifica-actions">
+        <a href="#" class="verifica-link">Invia di nuovo il codice</a>
+      </div>
+    </div>
+
+    <!-- ===== TORNA INDIETRO ===== -->
+    <div class="login-back">
+      <a href="login.html" class="hub-btn">Torna a Accesso / Registrati</a>
+    </div>
+
+  </div>
+
+  <!-- ===== SCRIPT PIOGGIA ORO ===== -->
+  <script>
+    const canvas = document.getElementById("matrix");
+    const ctx = canvas.getContext("2d");
+
+    const letters = "𓂀𓆣𓅓𓋹𓃭𓂋𓁹𓆑𓊃𓏏𓈖𓍿ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    const fontSize = 18;
+    let columns = 0;
+    let drops = [];
+
+    function setCanvasSize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+
+    function createDrops() {
+      columns = Math.floor(canvas.width / fontSize);
+      drops = [];
+
+      for (let i = 0; i < columns; i++) {
+        if (Math.random() > 0.65) {
+          drops[i] = Math.random() * canvas.height / fontSize;
+        } else {
+          drops[i] = -100;
+        }
+      }
+    }
+
+    function draw() {
+      ctx.globalCompositeOperation = "destination-out";
+      ctx.fillStyle = "rgba(0, 0, 0, 0.14)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.globalCompositeOperation = "source-over";
+
+      ctx.fillStyle = "rgba(212, 175, 55, 0.78)";
+      ctx.shadowColor = "rgba(212, 175, 55, 0.12)";
+      ctx.shadowBlur = 1;
+      ctx.font = "bold " + fontSize + "px monospace";
+
+      for (let i = 0; i < drops.length; i++) {
+        if (drops[i] < 0) {
+          if (Math.random() > 0.997) {
+            drops[i] = 0;
+          }
+          continue;
+        }
+
+        const text = letters.charAt(Math.floor(Math.random() * letters.length));
+        const x = i * fontSize;
+        const y = drops[i] * fontSize;
+
+        ctx.fillText(text, x, y);
+
+        if (y > canvas.height && Math.random() > 0.985) {
+          if (Math.random() > 0.55) {
+            drops[i] = 0;
+          } else {
+            drops[i] = -100;
+          }
+        } else {
+          drops[i] += 0.55 + Math.random() * 0.45;
+        }
+      }
+    }
+
+    setCanvasSize();
+    createDrops();
+    setInterval(draw, 55);
+
+    window.addEventListener("resize", () => {
+      setCanvasSize();
+      createDrops();
+    });
+  </script>
+
+</body>
+</html>
