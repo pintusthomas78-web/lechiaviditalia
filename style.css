@@ -305,3 +305,121 @@
 .hub-btn:active {
   transform: scale(0.96);
 }
+/* ===== LOGIN / REGISTRATI ===== */
+.login-page {
+  margin: 0;
+  min-height: 100vh;
+  overflow: hidden;
+  background: #000;
+  font-family: Georgia, serif;
+  position: relative;
+}
+
+.login-shell {
+  position: relative;
+  z-index: 2;
+  width: min(94vw, 1100px);
+  margin: 50px auto;
+  padding: 24px;
+}
+
+.login-title-box {
+  text-align: center;
+  margin-bottom: 26px;
+  color: #f1d97a;
+}
+
+.login-title-box h1 {
+  font-size: clamp(2rem, 4vw, 3.4rem);
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+}
+
+.login-title-box p {
+  color: #e5cf86;
+  font-size: 1.05rem;
+}
+
+.login-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.login-card {
+  background: rgba(15, 10, 0, 0.72);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 16px;
+  padding: 22px;
+  backdrop-filter: blur(4px);
+  box-shadow: 0 0 18px rgba(0, 0, 0, 0.28);
+}
+
+.login-card h2 {
+  color: #f1d97a;
+  text-align: center;
+  margin-bottom: 18px;
+}
+
+.login-card label {
+  display: block;
+  margin-bottom: 6px;
+  color: #ead9a2;
+  font-size: 0.95rem;
+}
+
+.login-card input {
+  width: 100%;
+  padding: 12px 14px;
+  margin-bottom: 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  background: rgba(255, 248, 220, 0.9);
+  color: #2a2115;
+  font-size: 0.96rem;
+  outline: none;
+}
+
+.login-card input:focus {
+  border-color: rgba(212, 175, 55, 0.8);
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.18);
+}
+
+.login-btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 16px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #caa437, #f1d97a);
+  color: #1f1a12;
+  text-decoration: none;
+  font-weight: bold;
+  box-shadow: 0 0 12px rgba(202, 164, 55, 0.24);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.login-btn:hover {
+  transform: scale(1.03);
+  box-shadow:
+    0 0 18px rgba(202, 164, 55, 0.6),
+    0 0 30px rgba(202, 164, 55, 0.35);
+}
+
+.login-back {
+  margin-top: 22px;
+  text-align: center;
+}
+
+@media (max-width: 800px) {
+  .login-columns {
+    grid-template-columns: 1fr;
+  }
+
+  .login-shell {
+    width: 94vw;
+    margin: 30px auto;
+  }
+}
