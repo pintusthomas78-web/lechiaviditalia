@@ -491,3 +491,60 @@
 .verifica-link:hover {
   text-decoration: underline;
 }
+/* ===== BOX REGISTRAZIONE / VERIFICA ===== */
+.box {
+  width: 90%;
+  max-width: 420px;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  background: rgba(0,0,0,0.75);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 14px;
+  padding: 30px;
+  text-align: center;
+  z-index: 2;
+}
+
+/* ===== TITOLI ===== */
+.box h1 {
+  margin-bottom: 20px;
+}
+
+/* ===== INPUT ===== */
+.box input {
+  width: 100%;
+  padding: 14px;
+  margin-bottom: 14px;
+  border: none;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+/* ===== BOTTONE ===== */
+.box button {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+/* ===== OTP ===== */
+.otp-box {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.otp-box input {
+  width: 45px;
+  height: 55px;
+  text-align: center;
+  font-size: 22px;
+  margin-bottom: 0;
+}
