@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Accesso / Registrazione</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="login-page">
+
+  <div class="box">
+    <h1>Accesso Player</h1>
+
+    <input type="email" id="email" placeholder="Inserisci la tua email" required>
+    <input type="password" id="password" placeholder="Inserisci la password" required>
+
+    <button id="registerBtn">Registrati</button>
+    <button id="loginBtn" style="margin-top:10px;">Accedi</button>
+
+    <p id="messaggio" style="margin-top:15px; color:#f1d97a;"></p>
+  </div>
+
+  <script type="module" src="firebase-config.js"></script>
+  <script type="module" src="auth.js"></script>
+</body>
+</html>
