@@ -293,7 +293,7 @@
     box-shadow 0.18s ease;
 }
 
-/* ===== EFFETTO CALAMITA ===== */
+/* ===== EFFETTO CALAMITA UGUALE PER TUTTI ===== */
 .hub-btn:hover {
   transform: scale(1.08);
   box-shadow:
@@ -301,7 +301,7 @@
     0 0 30px rgba(202, 164, 55, 0.4);
 }
 
-/* ===== CLICK (effetto pressione) ===== */
+/* ===== CLICK ===== */
 .hub-btn:active {
   transform: scale(0.96);
 }
