@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <!-- ===== BASE LOGIN ===== -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Accesso / Registrati - Le Chiavi d'Italia</title>
-
-  <!-- ===== CSS ===== -->
   <link rel="stylesheet" href="style.css">
 </head>
 
@@ -74,15 +71,12 @@
       signInWithEmailAndPassword
     } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
-   const firebaseConfig = {
-    apiKey: "AIzaSyBbuc8hgLd4diUMJbDdITx-oQZn-mswLIA",
-    authDomain: "lechiaviditalia.firebaseapp.com",
-    projectId: "lechiaviditalia",
-    storageBucket: "lechiaviditalia.firebasestorage.app",
-    messagingSenderId: "97709098921",
-    appId: "1:97709098921:web:b17a87dd3d28fb7a1ae6b8",
-    measurementId: "G-SM77N1DH8B"
-  };
+    const firebaseConfig = {
+      apiKey: "AIzaSyBbuc8hgLd4diUMJbDdITx-oQZn-mswLIA",
+      authDomain: "lechiaviditalia.firebaseapp.com",
+      projectId: "lechiaviditalia",
+      appId: "1:97709098921:web:b17a87dd3d28fb7a1ae6b8"
+    };
 
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
@@ -99,6 +93,10 @@
       try {
         await createUserWithEmailAndPassword(auth, email, password);
         alert("Registrazione completata");
+
+        // Reindirizza dopo registrazione
+        window.location.href = "hub.html";
+
       } catch (error) {
         alert(error.message);
       }
@@ -116,16 +114,14 @@
       try {
         await signInWithEmailAndPassword(auth, email, password);
         alert("Accesso effettuato");
+
+        // Reindirizza dopo login
+        window.location.href = "hub.html";
+
       } catch (error) {
         alert(error.message);
       }
     };
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword
-} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
   </script>
 
   <!-- ===== SCRIPT PIOGGIA ORO ===== -->
@@ -133,76 +129,4 @@ import {
     const canvas = document.getElementById("matrix");
     const ctx = canvas.getContext("2d");
 
-    const letters = "𓂀𓆣𓅓𓋹𓃭𓂋𓁹𓆑𓊃𓏏𓈖𓍿ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-    const fontSize = 18;
-    let columns = 0;
-    let drops = [];
-
-    function setCanvasSize() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-
-    function createDrops() {
-      columns = Math.floor(canvas.width / fontSize);
-      drops = [];
-
-      for (let i = 0; i < columns; i++) {
-        if (Math.random() > 0.65) {
-          drops[i] = Math.random() * canvas.height / fontSize;
-        } else {
-          drops[i] = -100;
-        }
-      }
-    }
-
-    function draw() {
-      ctx.globalCompositeOperation = "destination-out";
-      ctx.fillStyle = "rgba(0, 0, 0, 0.14)";
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      ctx.globalCompositeOperation = "source-over";
-
-      ctx.fillStyle = "rgba(212, 175, 55, 0.78)";
-      ctx.shadowColor = "rgba(212, 175, 55, 0.12)";
-      ctx.shadowBlur = 1;
-      ctx.font = "bold " + fontSize + "px monospace";
-
-      for (let i = 0; i < drops.length; i++) {
-        if (drops[i] < 0) {
-          if (Math.random() > 0.997) {
-            drops[i] = 0;
-          }
-          continue;
-        }
-
-        const text = letters.charAt(Math.floor(Math.random() * letters.length));
-        const x = i * fontSize;
-        const y = drops[i] * fontSize;
-
-        ctx.fillText(text, x, y);
-
-        if (y > canvas.height && Math.random() > 0.985) {
-          if (Math.random() > 0.55) {
-            drops[i] = 0;
-          } else {
-            drops[i] = -100;
-          }
-        } else {
-          drops[i] += 0.55 + Math.random() * 0.45;
-        }
-      }
-    }
-
-    setCanvasSize();
-    createDrops();
-    setInterval(draw, 55);
-
-    window.addEventListener("resize", () => {
-      setCanvasSize();
-      createDrops();
-    });
-  </script>
-
-</body>
-</html>
+    const letters = "𓂀𓆣𓅓𓋹𓃭𓂋𓁹𓆑𓊃𓏏
