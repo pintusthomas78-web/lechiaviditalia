@@ -577,14 +577,14 @@
   font-size: 18px;
   font-weight: bold;
   border: none;
-  border-radius: 10px;
+  border-radius: 10px
   background: gold;
   color: black;
   cursor: pointer;
 }
 .entra-btn {
   position: absolute;
-  top: 82%;
+  top: 20%;
   left: 50%;
   transform: translateX(-50%);
   padding: 12px 24px;
@@ -595,7 +595,7 @@
   background: gold;
   color: black;
   cursor: pointer;
-  opacity: 0;
+  opacity: 1;
   transition: opacity 1s ease;
   z-index: 1000;
 }
