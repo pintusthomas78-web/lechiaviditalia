@@ -548,3 +548,35 @@
   font-size: 22px;
   margin-bottom: 0;
 }
+/* ===== INTRO CODICE ===== */
+.codice-box {
+  position: fixed; /* IMPORTANTISSIMO */
+  bottom: 120px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  opacity: 1; /* metti 1 per test */
+  z-index: 9999; /* sopra tutto */
+}
+
+.codice-box input {
+  width: 220px;
+  padding: 14px;
+  font-size: 22px;
+  text-align: center;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+}
+
+.codice-box button {
+  padding: 14px 24px;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  background: gold;
+  color: black;
+  cursor: pointer;
+}
