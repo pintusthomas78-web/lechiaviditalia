@@ -18,6 +18,7 @@
       height: 100vh;
       overflow: hidden;
       position: relative;
+      background: black;
     }
 
     .porta {
@@ -30,29 +31,98 @@
     }
 
     @keyframes zoomPorta {
-      0% {
-        transform: scale(1);
-      }
-      100% {
-        transform: scale(1.8);
-      }
+      0% { transform: scale(1); }
+      100% { transform: scale(1.8); }
     }
 
     .messaggio {
       position: absolute;
-      bottom: 120px;
+      top: 78%;
       left: 50%;
       transform: translateX(-50%);
       color: gold;
       font-size: 20px;
-      opacity: 0;
-      transition: opacity 1s ease;
       text-align: center;
       text-shadow: 0 0 10px rgba(255,215,0,0.7);
-      z-index: 10;
+      opacity: 0;
+      transition: opacity 1s ease;
+      z-index: 1000;
+      width: 90%;
+      max-width: 520px;
     }
 
     .codice-box {
       position: absolute;
-      bottom: 50px;
-      left: 50
+      top: 86%;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 10px;
+      opacity: 0;
+      transition: opacity 1s ease;
+      z-index: 1000;
+    }
+
+    .codice-box input {
+      width: 220px;
+      padding: 14px;
+      font-size: 22px;
+      text-align: center;
+      border-radius: 10px;
+      border: none;
+      outline: none;
+      box-sizing: border-box;
+    }
+
+    .codice-box button {
+      padding: 14px 24px;
+      font-size: 18px;
+      font-weight: bold;
+      border: none;
+      border-radius: 10px;
+      background: gold;
+      color: black;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="scene">
+    <img src="file_00000000813471f485af95f5decb4fe4.png" class="porta" alt="Portoni">
+
+    <div class="messaggio" id="messaggio">
+      Inserisci il codice per oltrepassare la prima soglia
+    </div>
+
+    <div class="codice-box" id="codiceBox">
+      <input type="text" id="codiceInput" maxlength="7" placeholder="Inserisci codice">
+      <button onclick="verificaCodice()">Entra</button>
+    </div>
+  </div>
+
+  <script>
+    const codiceCorretto = "123A";
+
+    setTimeout(() => {
+      document.getElementById("messaggio").style.opacity = "1";
+    }, 7000);
+
+    setTimeout(() => {
+      document.getElementById("codiceBox").style.opacity = "1";
+    }, 8500);
+
+    function verificaCodice() {
+      const valore = document.getElementById("codiceInput").value.trim();
+
+      if (valore === codiceCorretto) {
+        window.location.href = "livello2.html";
+      } else {
+        alert("Codice errato");
+      }
+    }
+  </script>
+
+</body>
+</html>
