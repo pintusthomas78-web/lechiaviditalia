@@ -1,73 +1,63 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Intro Porta</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Intro Porta</title>
 
-<style>
-body {
-  margin: 0;
-  overflow: hidden;
-  background: black;
-}
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background: black;
+    }
 
-/* CONTENITORE */
-.scene {
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-  position: relative;
-}
+    .scene {
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
 
-/* IMMAGINE */
-.porta {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transform: scale(1);
-  animation: zoomPorta 8s ease forwards;
-}
+    .porta {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1);
+      animation: zoomPorta 8s ease forwards;
+    }
 
-/* ANIMAZIONE ZOOM */
-@keyframes zoomPorta {
-  0% {
-    transform: scale(1);
-  }
-  100% {
-    transform: scale(1.8);
-  }
-}
+    @keyframes zoomPorta {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.8); }
+    }
 
-/* CODICE */
-#codice {
-  position: absolute;
-  top: 55%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 70px;
-  color: gold;
-  font-weight: bold;
-  letter-spacing: 10px;
-  opacity: 0;
-  transition: opacity 1s ease;
-  text-shadow: 0 0 15px rgba(255,215,0,0.9);
-}
-</style>
+    #codice {
+      position: absolute;
+      top: 55%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 70px;
+      color: gold;
+      letter-spacing: 10px;
+      opacity: 0;
+      transition: opacity 1s;
+      text-shadow: 0 0 15px gold;
+    }
+  </style>
 </head>
 
 <body>
 
 <div class="scene">
-  <img src="assets/porta.jpg" class="porta">
-
+  <img src="file_00000000813471f485af95f5decb4fe4.png" class="porta">
   <div id="codice">4729</div>
 </div>
 
 <script>
-setTimeout(() => {
-  document.getElementById("codice").style.opacity = 1;
-}, 7000);
+  setTimeout(() => {
+    document.getElementById("codice").style.opacity = 1;
+  }, 7000);
 </script>
 
 </body>
