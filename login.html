@@ -113,7 +113,7 @@
 
       try {
         await signInWithEmailAndPassword(auth, email, password);
-        alert("Accesso effettuato");
+        window.location.href = "intro-video.html";
 
         // Reindirizza dopo login
         window.location.href = "hub.html";
