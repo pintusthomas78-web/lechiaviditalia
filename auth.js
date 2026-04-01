@@ -8,17 +8,25 @@ import {
 
 const auth = getAuth(app);
 
-// REGISTRAZIONE
+const emailInput = document.getElementById("email");
+const passwordInput = document.getElementById("password");
 const registerBtn = document.getElementById("registerBtn");
+const loginBtn = document.getElementById("loginBtn");
+const messaggio = document.getElementById("messaggio");
 
+// REGISTRAZIONE
 if (registerBtn) {
   registerBtn.addEventListener("click", async () => {
-    const email = document.getElementById("email").value.trim();
-    const password = document.getElementById("password").value.trim();
-    const messaggio = document.getElementById("messaggio");
+    const email = emailInput.value.trim();
+    const password = passwordInput.value.trim();
 
     if (!email || !password) {
       messaggio.innerText = "Inserisci email e password";
+      return;
+    }
+
+    if (password.length < 6) {
+      messaggio.innerText = "La password deve avere almeno 6 caratteri";
       return;
     }
 
@@ -26,19 +34,16 @@ if (registerBtn) {
       await createUserWithEmailAndPassword(auth, email, password);
       messaggio.innerText = "Registrazione completata";
     } catch (error) {
-      messaggio.innerText = error.message;
+      messaggio.innerText = "Errore: " + error.message;
     }
   });
 }
 
-// LOGIN
-const loginBtn = document.getElementById("loginBtn");
-
+// ACCESSO
 if (loginBtn) {
   loginBtn.addEventListener("click", async () => {
-    const email = document.getElementById("email").value.trim();
-    const password = document.getElementById("password").value.trim();
-    const messaggio = document.getElementById("messaggio");
+    const email = emailInput.value.trim();
+    const password = passwordInput.value.trim();
 
     if (!email || !password) {
       messaggio.innerText = "Inserisci email e password";
@@ -47,10 +52,7 @@ if (loginBtn) {
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
-
-      // PASSAGGIO ALLA PORTA
       window.location.href = "intro-video.html";
-
     } catch (error) {
       messaggio.innerText = "Errore: " + error.message;
     }
