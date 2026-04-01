@@ -550,14 +550,15 @@
 }
 /* ===== INTRO CODICE ===== */
 .codice-box {
-  position: fixed; /* IMPORTANTISSIMO */
-  bottom: 120px;
+  position: absolute;
+  top: 68%; /* SOPRA la scritta */
   left: 50%;
   transform: translateX(-50%);
   display: flex;
   gap: 10px;
-  opacity: 0; /* metti 1 per test */
-  z-index: 8000; /* sopra tutto */
+  opacity: 0;
+  transition: opacity 1s ease;
+  z-index: 1000;
 }
 
 .codice-box input {
