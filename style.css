@@ -557,7 +557,7 @@
   display: flex;
   gap: 10px;
   opacity: 1; /* metti 1 per test */
-  z-index: 9999; /* sopra tutto */
+  z-index: 8000; /* sopra tutto */
 }
 
 .codice-box input {
