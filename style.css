@@ -584,7 +584,7 @@
 }
 .entra-btn {
   position: absolute;
-  top: 50%;
+  top: 20%;
   left: 50%;
   transform: translateX(-50%);
   padding: 12px 24px;
