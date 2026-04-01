@@ -53,9 +53,9 @@
 
     .codice-box {
       position: absolute;
-      top: 86%;
+      top: 68%;
       left: 50%;
-      transform: translateX(-50%);
+      transform: translate(-50%, -50%);
       display: flex;
       gap: 10px;
       opacity: 0;
@@ -63,19 +63,25 @@
       z-index: 1000;
     }
 
-    .codice-box input {
-      width: 220px;
-      padding: 14px;
-      font-size: 22px;
+    .codice-input {
+      width: 52px;
+      height: 58px;
       text-align: center;
+      font-size: 26px;
+      font-weight: bold;
       border-radius: 10px;
       border: none;
       outline: none;
-      box-sizing: border-box;
+      background: rgba(255,255,255,0.95);
+      color: #1a1a1a;
     }
 
-    .codice-box button {
-      padding: 14px 24px;
+    .entra-btn {
+      position: absolute;
+      top: 88%;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 12px 24px;
       font-size: 18px;
       font-weight: bold;
       border: none;
@@ -83,6 +89,9 @@
       background: gold;
       color: black;
       cursor: pointer;
+      opacity: 0;
+      transition: opacity 1s ease;
+      z-index: 1000;
     }
   </style>
 </head>
@@ -97,26 +106,57 @@
     </div>
 
     <div class="codice-box" id="codiceBox">
-      <input type="text" id="codiceInput" maxlength="7" placeholder="Inserisci codice">
-      <button onclick="verificaCodice()">Entra</button>
+      <input class="codice-input" type="text" maxlength="1" id="c1">
+      <input class="codice-input" type="text" maxlength="1" id="c2">
+      <input class="codice-input" type="text" maxlength="1" id="c3">
+      <input class="codice-input" type="text" maxlength="1" id="c4">
     </div>
+
+    <button class="entra-btn" id="entraBtn" onclick="verificaCodice()">Entra</button>
   </div>
 
   <script>
     const codiceCorretto = "123A";
 
-    setTimeout(() => {
-      document.getElementById("messaggio").style.opacity = "1";
-    }, 7000);
+    window.onload = function () {
+      setTimeout(() => {
+        document.getElementById("messaggio").style.opacity = "1";
+      }, 7000);
 
-    setTimeout(() => {
-      document.getElementById("codiceBox").style.opacity : 1!important;
-    }, 10000);
+      setTimeout(() => {
+        document.getElementById("codiceBox").style.opacity = "1";
+      }, 8000);
+
+      setTimeout(() => {
+        document.getElementById("entraBtn").style.opacity = "1";
+      }, 8000);
+    };
+
+    const inputs = document.querySelectorAll(".codice-input");
+
+    inputs.forEach((input, index) => {
+      input.addEventListener("input", () => {
+        input.value = input.value.toUpperCase();
+        if (input.value.length === 1 && index < inputs.length - 1) {
+          inputs[index + 1].focus();
+        }
+      });
+
+      input.addEventListener("keydown", (e) => {
+        if (e.key === "Backspace" && input.value === "" && index > 0) {
+          inputs[index - 1].focus();
+        }
+      });
+    });
 
     function verificaCodice() {
-      const valore = document.getElementById("codiceInput").value.trim();
+      const codiceInserito =
+        document.getElementById("c1").value +
+        document.getElementById("c2").value +
+        document.getElementById("c3").value +
+        document.getElementById("c4").value;
 
-      if (valore === codiceCorretto) {
+      if (codiceInserito === codiceCorretto) {
         window.location.href = "livello2.html";
       } else {
         alert("Codice errato");
