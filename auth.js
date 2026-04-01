@@ -8,42 +8,15 @@ import {
 
 const auth = getAuth(app);
 
-const emailInput = document.getElementById("email");
-const passwordInput = document.getElementById("password");
-const registerBtn = document.getElementById("registerBtn");
-const loginBtn = document.getElementById("loginBtn");
 const messaggio = document.getElementById("messaggio");
 
-// REGISTRAZIONE
-if (registerBtn) {
-  registerBtn.addEventListener("click", async () => {
-    const email = emailInput.value.trim();
-    const password = passwordInput.value.trim();
+// ===== ACCESSO =====
+const loginBtn = document.getElementById("loginBtn");
 
-    if (!email || !password) {
-      messaggio.innerText = "Inserisci email e password";
-      return;
-    }
-
-    if (password.length < 6) {
-      messaggio.innerText = "La password deve avere almeno 6 caratteri";
-      return;
-    }
-
-    try {
-      await createUserWithEmailAndPassword(auth, email, password);
-      messaggio.innerText = "Registrazione completata";
-    } catch (error) {
-      messaggio.innerText = "Errore: " + error.message;
-    }
-  });
-}
-
-// ACCESSO
 if (loginBtn) {
   loginBtn.addEventListener("click", async () => {
-    const email = emailInput.value.trim();
-    const password = passwordInput.value.trim();
+    const email = document.getElementById("loginEmail").value.trim();
+    const password = document.getElementById("loginPassword").value.trim();
 
     if (!email || !password) {
       messaggio.innerText = "Inserisci email e password";
@@ -55,6 +28,49 @@ if (loginBtn) {
       window.location.href = "intro-video.html";
     } catch (error) {
       messaggio.innerText = "Errore: " + error.message;
+    }
+  });
+}
+
+// ===== REGISTRAZIONE =====
+const registerBtn = document.getElementById("registerBtn");
+
+if (registerBtn) {
+  registerBtn.addEventListener("click", async () => {
+
+    const nickname = document.getElementById("nickname").value.trim();
+    const email = document.getElementById("registerEmail").value.trim();
+    const password = document.getElementById("registerPassword").value.trim();
+    const confirm = document.getElementById("confirmPassword").value.trim();
+
+    if (!nickname || !email || !password || !confirm) {
+      messaggio.innerText = "Compila tutti i campi";
+      return;
+    }
+
+    if (password.length < 6) {
+      messaggio.innerText = "Password minimo 6 caratteri";
+      return;
+    }
+
+    if (password !== confirm) {
+      messaggio.innerText = "Le password non coincidono";
+      return;
+    }
+
+    try {
+      await createUserWithEmailAndPassword(auth, email, password);
+
+      // salvo nickname (temporaneo)
+      localStorage.setItem("nickname", nickname);
+
+      messaggio.innerText = "Registrazione completata";
+    } catch (error) {
+      if (error.code === "auth/email-already-in-use") {
+        messaggio.innerText = "Email già registrata. Usa ACCEDI.";
+      } else {
+        messaggio.innerText = "Errore: " + error.message;
+      }
     }
   });
 }
