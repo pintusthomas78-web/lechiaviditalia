@@ -551,9 +551,9 @@
 /* ===== INTRO CODICE ===== */
 .codice-box {
   position: absolute;
-  top: 68%; /* SOPRA la scritta */
+  top: 68%; /* sopra la scritta */
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%, -50%); /* centratura perfetta */
   display: flex;
   gap: 10px;
   opacity: 0;
@@ -569,6 +569,7 @@
   border-radius: 10px;
   border: none;
   outline: none;
+  box-sizing: border-box;
 }
 
 .codice-box button {
