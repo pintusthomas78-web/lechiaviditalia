@@ -6,21 +6,48 @@
   <title>Accesso / Registrazione</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body class="login-page">
 
-  <div class="box">
-    <h1>Accesso Player</h1>
+  <div class="login-shell">
 
-    <input type="email" id="email" placeholder="Inserisci la tua email" required>
-    <input type="password" id="password" placeholder="Inserisci la password" required>
+    <div class="login-title-box">
+      <h1>Le Chiavi d'Italia</h1>
+      <p>Accedi o crea il tuo profilo</p>
+    </div>
 
-    <button id="registerBtn" type="button">Registrati</button>
-    <button id="loginBtn" type="button" style="margin-top:10px;">Accedi</button>
+    <div class="login-columns">
 
-    <p id="messaggio" style="margin-top:15px; color:#f1d97a;"></p>
+      <!-- ===== ACCESSO ===== -->
+      <div class="login-card">
+        <h2>Accesso</h2>
+
+        <input type="email" id="loginEmail" placeholder="Email">
+        <input type="password" id="loginPassword" placeholder="Password">
+
+        <button id="loginBtn" class="login-btn">Accedi</button>
+      </div>
+
+      <!-- ===== REGISTRAZIONE ===== -->
+      <div class="login-card">
+        <h2>Registrazione</h2>
+
+        <input type="text" id="nickname" placeholder="Nickname">
+        <input type="email" id="registerEmail" placeholder="Email">
+        <input type="password" id="registerPassword" placeholder="Password">
+        <input type="password" id="confirmPassword" placeholder="Conferma password">
+
+        <button id="registerBtn" class="login-btn">Registrati</button>
+      </div>
+
+    </div>
+
+    <p id="messaggio" style="text-align:center; margin-top:20px; color:#f1d97a;"></p>
+
   </div>
 
   <script type="module" src="firebase-config.js"></script>
   <script type="module" src="auth.js"></script>
+
 </body>
 </html>
