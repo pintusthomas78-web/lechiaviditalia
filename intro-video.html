@@ -10,6 +10,7 @@
       margin: 0;
       overflow: hidden;
       background: black;
+      font-family: Georgia, serif;
     }
 
     .scene {
@@ -32,6 +33,7 @@
       100% { transform: scale(1.8); }
     }
 
+    /* CODICE CHE APPARE */
     #codice {
       position: absolute;
       top: 55%;
@@ -44,20 +46,80 @@
       transition: opacity 1s;
       text-shadow: 0 0 15px gold;
     }
+
+    /* BOX INPUT */
+    .codice-box {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 10px;
+      opacity: 0;
+      transition: opacity 1s;
+    }
+
+    .codice-box input {
+      width: 200px;
+      padding: 14px;
+      font-size: 22px;
+      text-align: center;
+      border-radius: 10px;
+      border: none;
+      outline: none;
+    }
+
+    .codice-box button {
+      padding: 14px 24px;
+      font-size: 18px;
+      font-weight: bold;
+      border: none;
+      border-radius: 10px;
+      background: gold;
+      color: black;
+      cursor: pointer;
+    }
   </style>
 </head>
 
 <body>
 
 <div class="scene">
+  <!-- IMMAGINE DELLA TUA PORTA -->
   <img src="file_00000000813471f485af95f5decb4fe4.png" class="porta">
-  <div id="codice">4729</div>
+
+  <!-- CODICE -->
+  <div id="codice">123A</div>
+
+  <!-- INPUT PLAYER -->
+  <div class="codice-box" id="codiceBox">
+    <input type="text" id="codiceInput" maxlength="7" placeholder="Inserisci codice">
+    <button onclick="verificaCodice()">Entra</button>
+  </div>
 </div>
 
 <script>
+  const codiceCorretto = "123A";
+
+  // appare il codice
   setTimeout(() => {
     document.getElementById("codice").style.opacity = 1;
   }, 7000);
+
+  // appare input
+  setTimeout(() => {
+    document.getElementById("codiceBox").style.opacity = 1;
+  }, 8500);
+
+  function verificaCodice() {
+    const valore = document.getElementById("codiceInput").value.trim();
+
+    if (valore === codiceCorretto) {
+      window.location.href = "livello2.html";
+    } else {
+      alert("Codice errato");
+    }
+  }
 </script>
 
 </body>
