@@ -556,7 +556,7 @@
   transform: translateX(-50%);
   display: flex;
   gap: 10px;
-  opacity: 1; /* metti 1 per test */
+  opacity: 0; /* metti 1 per test */
   z-index: 8000; /* sopra tutto */
 }
 
