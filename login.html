@@ -3,148 +3,130 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Accesso / Registrati - Le Chiavi d'Italia</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Intro Porta</title>
+
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background: black;
+      font-family: Georgia, serif;
+    }
+
+    .scene {
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+      background: black;
+    }
+
+    .porta {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1);
+      animation: zoomPorta 8s ease forwards;
+      display: block;
+    }
+
+    @keyframes zoomPorta {
+      0% {
+        transform: scale(1);
+      }
+      100% {
+        transform: scale(1.8);
+      }
+    }
+
+    .codice-box {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 10px;
+      opacity: 0;
+      transition: opacity 1s ease;
+      z-index: 10;
+    }
+
+    .codice-box input {
+      width: 220px;
+      padding: 14px;
+      font-size: 22px;
+      text-align: center;
+      border-radius: 10px;
+      border: none;
+      outline: none;
+      box-sizing: border-box;
+    }
+
+    .codice-box button {
+      padding: 14px 24px;
+      font-size: 18px;
+      font-weight: bold;
+      border: none;
+      border-radius: 10px;
+      background: gold;
+      color: black;
+      cursor: pointer;
+    }
+
+    .messaggio {
+      position: absolute;
+      bottom: 110px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: gold;
+      font-size: 20px;
+      text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+      opacity: 0;
+      transition: opacity 1s ease;
+      z-index: 10;
+      text-align: center;
+      width: 90%;
+      max-width: 500px;
+    }
+  </style>
 </head>
 
-<body class="login-page">
+<body>
 
-  <!-- ===== PIOGGIA DI CARATTERI ===== -->
-  <canvas id="matrix"></canvas>
+  <div class="scene">
+    <img src="file_00000000813471f485af95f5decb4fe4.png" class="porta" alt="Portoni">
 
-  <!-- ===== CONTENITORE LOGIN ===== -->
-  <div class="login-shell">
-
-    <!-- ===== TITOLO ===== -->
-    <div class="login-title-box">
-      <h1>ACCESSO / REGISTRATI</h1>
-      <p>Entra nella caccia o crea il tuo profilo.</p>
+    <div class="messaggio" id="messaggio">
+      Inserisci il codice per oltrepassare la prima soglia
     </div>
 
-    <!-- ===== COLONNE ===== -->
-    <div class="login-columns">
-
-      <!-- ===== ACCESSO ===== -->
-      <div class="login-card">
-        <h2>Accedi</h2>
-
-        <label for="login-email">Email</label>
-        <input id="login-email" type="email" placeholder="Inserisci email">
-
-        <label for="login-password">Password</label>
-        <input id="login-password" type="password" placeholder="Inserisci password">
-
-        <button type="button" class="login-btn" onclick="accedi()">Accedi</button>
-      </div>
-
-      <!-- ===== REGISTRAZIONE ===== -->
-      <div class="login-card">
-        <h2>Registrati</h2>
-
-        <label for="reg-nick">Nickname</label>
-        <input id="reg-nick" type="text" placeholder="Scegli nickname">
-
-        <label for="register-email">Email</label>
-        <input id="register-email" type="email" placeholder="Inserisci email">
-
-        <label for="register-password">Password</label>
-        <input id="register-password" type="password" placeholder="Crea password">
-
-        <button type="button" class="login-btn" onclick="registrati()">Registrati</button>
-      </div>
-
+    <div class="codice-box" id="codiceBox">
+      <input type="text" id="codiceInput" maxlength="8" placeholder="Inserisci codice">
+      <button onclick="verificaCodice()">Entra</button>
     </div>
-
-    <!-- ===== TORNA INDIETRO ===== -->
-    <div class="login-back">
-      <a href="hub.html" class="hub-btn">Torna all'hub</a>
-    </div>
-
   </div>
 
-  <!-- ===== FIREBASE ===== -->
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-    import {
-      getAuth,
-      createUserWithEmailAndPassword,
-      signInWithEmailAndPassword
-    } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+  <script>
+    const codiceCorretto = "123A";
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyBbuc8hgLd4diUMJbDdITx-oQZn-mswLIA",
-      authDomain: "lechiaviditalia.firebaseapp.com",
-      projectId: "lechiaviditalia",
-      appId: "1:97709098921:web:b17a87dd3d28fb7a1ae6b8"
-    };
+    setTimeout(() => {
+      document.getElementById("messaggio").style.opacity = 1;
+    }, 7000);
 
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
+    setTimeout(() => {
+      document.getElementById("codiceBox").style.opacity = 1;
+    }, 8000);
 
-    window.registrati = async function () {
-      const email = document.getElementById("register-email").value.trim();
-      const password = document.getElementById("register-password").value.trim();
+    function verificaCodice() {
+      const valore = document.getElementById("codiceInput").value.trim();
 
-      if (!email || !password) {
-        alert("Compila email e password");
-        return;
+      if (valore === codiceCorretto) {
+        window.location.href = "livello2.html";
+      } else {
+        alert("Codice errato");
       }
-
-      try {
-        await createUserWithEmailAndPassword(auth, email, password);
-        alert("Registrazione completata. Ora effettua l'accesso.");
-      } catch (error) {
-        alert(error.message);
-      }
-    };
-
-    window.accedi = async function () {
-      const email = document.getElementById("login-email").value.trim();
-      const password = document.getElementById("login-password").value.trim();
-
-      if (!email || !password) {
-        alert("Compila email e password");
-        return;
-      }
-
-      try {
-        await signInWithEmailAndPassword(auth, email, password);
-        window.location.href = "intro-video.html";
-      } catch (error) {
-        alert(error.message);
-      }
-    };
+    }
   </script>
 
-  <!-- ===== SCRIPT PIOGGIA ORO ===== -->
-  <script>
-    const canvas = document.getElementById("matrix");
-    const ctx = canvas.getContext("2d");
-
-    const letters = "𓂀𓆣𓅓𓋹𓃭𓂋𓁹𓆑𓊃𓏏𓈖𓍿ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-    const fontSize = 18;
-    let columns = 0;
-    let drops = [];
-
-    function setCanvasSize() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-
-    function createDrops() {
-      columns = Math.floor(canvas.width / fontSize);
-      drops = [];
-
-      for (let i = 0; i < columns; i++) {
-        if (Math.random() > 0.65) {
-          drops[i] = Math.random() * canvas.height / fontSize;
-        } else {
-          drops[i] = -100;
-        }
-      }
-    }
-
-    function draw() {
-      ctx.globalCompositeOperation = "destination-out";
-      ctx.fillStyle = "rgba(0, 0, 0, 0.14)";
-      ctx.fillRect(
+</body>
+</html>
